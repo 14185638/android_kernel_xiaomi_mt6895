@@ -332,8 +332,6 @@ static ssize_t wakeup_enable_set(struct device *dev,
 				 struct device_attribute *attr, const char *buf,
 				 size_t count)
 {
-	struct fpc1022_data *fpc1022 = dev_get_drvdata(dev);
-
 /*
 	if (!strncmp(buf, "enable", strlen("enable"))) {
 		fpc1022->wakeup_enabled = true;
@@ -779,7 +777,7 @@ err_no_of_node:
 }
 #endif
 
-static int fpc1022_platform_remove(struct platform_device *pldev)
+static int __maybe_unused fpc1022_platform_remove(struct platform_device *pldev)
 {
 	struct device *dev = &pldev->dev;
 	struct fpc1022_data *fpc1022 = dev_get_drvdata(dev);

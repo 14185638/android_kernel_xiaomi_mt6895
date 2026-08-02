@@ -240,19 +240,16 @@ static mius_ipi_scp_to_host_message_header_t *get_header(
 static int mius_data_io_ipi_handler(
 	unsigned int id, void *prdata, void *data, unsigned int len)
 {
-	pr_info("%s: start\n", __func__);
 	static uint16_t current_ipi_counter;
-	int32_t ret = -1;
-
 	mius_dram_payload_t *dram_payload =
 		(mius_dram_payload_t *)debug_segment.virt;
-
 	mius_ipi_scp_to_host_message_t *ipi_msg = data;
 	uint16_t target_ipi_message_count =
 		ipi_msg->header.dram_payload_offset;
-
 	mius_ipi_scp_to_host_message_header_t *header;
 	void *payload = NULL;
+
+	pr_info("%s: start\n", __func__);
 
 	header = &ipi_msg->header;
 	payload = ipi_msg->data;
